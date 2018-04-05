@@ -18,6 +18,13 @@ public:
         }
     }
 
+    T* operator+ (int i){
+        return p + i;
+    }
+    const T* operator+ (int i) const{
+        return p + i;
+    }
+
     operator bool() const { return p; }
     T& operator*() const {
         if(p) return *p;
@@ -56,12 +63,12 @@ Ptr<T>& Ptr<T>::operator=(const Ptr<T>& rhs){
     return *this;
 }
 
-template <class T> 
+template <class T>
 T* clone(T* tp) {
     return tp->clone();
 }
 
-template <> 
+template <>
 char* clone(char* cp) {
     return new char(*cp);
 }

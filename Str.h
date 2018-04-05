@@ -21,8 +21,8 @@ public:
     ~Str() { uncreate(); }
 
     // OPERATOR OVERLOADS
-    char& operator[](size_t i) { return data[i]; }
-    const char& operator[](size_t i) const { return data[i]; }
+    char& operator[](size_t i) { return *(data + i); }
+    const char& operator[](size_t i) const { return *(data + i); }
     friend std::istream& operator>>(std::istream&, Str&);
     Str& operator+=(const Str& rvalue) {
         append(rvalue);
@@ -33,10 +33,10 @@ public:
     size_t size() { return arraySize; }
     const size_t size() const { return arraySize; }
 
-    char* begin() { return data; }
-    const char* begin() const { return data; }
-    char* end() { return last; }
-    const char* end() const { return last; }
+    char* begin() { return data + 0; }
+    const char* begin() const { return data + 0; }
+    char* end() { return last + 0; }
+    const char* end() const { return last + 0; }
 
     void clear();
 
@@ -57,7 +57,7 @@ private:
     Ptr<char> last;
     Ptr<char> limit;
     size_t arraySize;
-    std::allocator<char> alloc;
+    std::allocator< Ptr<char> > alloc;
 
     void create();
     void create(size_t, const char&);
