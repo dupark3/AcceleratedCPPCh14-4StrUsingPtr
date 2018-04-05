@@ -32,7 +32,7 @@ public:
         if(*refptr != 1){
             --*refptr;
             refptr = new size_t(1);
-            p = p? p->clone() : 0;
+            p = p? clone(p) : 0;
         }
     }
 private:
@@ -56,8 +56,15 @@ Ptr<T>& Ptr<T>::operator=(const Ptr<T>& rhs){
     return *this;
 }
 
-//TODO
-// implement the clone() layer of indirection using template specialization
+template <class T> 
+T* clone(T* tp) {
+    return tp->clone();
+}
+
+template <> 
+char* clone(char* cp) {
+    return new char(*cp);
+}
 
 #endif // GUARD_Ptr_h
 
