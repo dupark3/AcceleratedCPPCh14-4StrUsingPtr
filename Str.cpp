@@ -14,8 +14,9 @@ void Str::create(){
 // If no char provided, value initialized default argument for char
 void Str::create(size_t n, const char& c){
     arraySize = n;
-    data = alloc.allocate(arraySize);
-    last = limit = data + arraySize;
+    // data(alloc.allocate(n));
+    data(new char[n]);
+    last = limit = data + n;
     std::uninitialized_fill(data, last, c);
 }
 

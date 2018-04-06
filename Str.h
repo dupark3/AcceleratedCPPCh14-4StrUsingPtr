@@ -57,7 +57,7 @@ private:
     Ptr<char> last;
     Ptr<char> limit;
     size_t arraySize;
-    std::allocator< Ptr<char> > alloc;
+    std::allocator<char> alloc;
 
     void create();
     void create(size_t, const char&);

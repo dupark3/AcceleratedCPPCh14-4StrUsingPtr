@@ -26,11 +26,18 @@ public:
     }
 
     operator bool() const { return p; }
+
     T& operator*() const {
         if(p) return *p;
         throw std::runtime_error("uninitialized Ptr");
     }
+
     T* operator->() const {
+        if(p) return p;
+        throw std::runtime_error("uninitialized Ptr");
+    }
+
+    T* operator&() const {
         if(p) return p;
         throw std::runtime_error("uninitialized Ptr");
     }
